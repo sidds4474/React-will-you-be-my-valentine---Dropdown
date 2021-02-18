@@ -149,7 +149,6 @@ function App()
 	// Do not alter/remove main div
 	const stateHandler = (e) => {
 		if(applyClick) {
-			console.log(e.target.value)
 			setStateIndex(e.target.value)
 			setStateClick(true)
 		}
@@ -176,8 +175,8 @@ function App()
 		if(stateClick) {
 			return (
 				<div>
-					<h2 id="state-name">{states[stateIndex].name}</h2>
-					<p id="state-description">{states[stateIndex].description}</p>
+					<div id="#state-name">{states[stateIndex].name}</div>
+					<div id="#state-description">{states[stateIndex].description}</div>
 				</div>
 			)
 		}
@@ -187,8 +186,8 @@ function App()
 		if(cityClick) {
 			return (
 				<div>
-					<h2 id="city-name">{states[stateIndex].city[cityIndex].name}</h2>
-					<p id="city-description">{states[stateIndex].city[cityIndex].description}</p>
+					<div id="#city-name">{states[stateIndex].city[cityIndex].name}</div>
+					<div id="#city-description">{states[stateIndex].city[cityIndex].description}</div>
 				</div>
 			)
 		}
@@ -198,15 +197,15 @@ function App()
 		if(landmarkClick) {
 			return (
 				<div>
-					<h2 id="landmark-name">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].name}</h2>
-					<p id="landmark-description">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].description}</p>
+					<div id="#landmark-name">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].name}</div>
+					<div id="#landmark-description">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].description}</div>
 				</div>
 			)
 		}
 	}
 	return (
 	<div id="main">
-		<select id="state" name="state" onClick={stateHandler}>
+		<select id="#state" name="state" onClick={stateHandler}>
 			{states.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
@@ -214,7 +213,7 @@ function App()
 
 		{renderStateDetail()}
 
-		<select id="city" name="city" onClick={cityHandler}>
+		<select id="#city" name="city" onClick={cityHandler}>
 			{states[stateIndex].city.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
@@ -222,7 +221,7 @@ function App()
 
 		{renderCityDetail()}
 
-		<select id="landmark" name="landmark" onClick={landmarkHandler}>
+		<select id="#landmark" name="landmark" onClick={landmarkHandler}>
 			{states[stateIndex].city[cityIndex].landmarks.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
