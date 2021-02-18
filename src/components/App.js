@@ -143,17 +143,56 @@ function App()
 	const [stateIndex, setStateIndex] = useState(0)
 	const [cityIndex, setCityIndex] = useState(0)
 	const [landmarkIndex, setlandMarkIndex] = useState(0)
+	const [stateClick, setStateClick] = useState(false)
+	const [cityClick, setCityClick] = useState(false)
+	const [landmarkClick, setLandmarkClick] = useState(false)
 	// Do not alter/remove main div
 	const stateHandler = (e) => {
 		setStateIndex(e.target.value)
+		setStateClick(true)
 	}
 
 	const cityHandler = (e) => {
 		setCityIndex(e.target.value)
+		setCityClick(true)
 	}
 
 	const landmarkHandler = (e) => {
 		setlandMarkIndex(e.target.value)
+		setLandmarkClick(true)
+	}
+
+	const renderStateDetail = () => {
+		if(stateClick) {
+			return (
+				<div>
+					<h2 id="state-name">{states[stateIndex].name}</h2>
+					<p id="state-description">{states[stateIndex].description}</p>
+				</div>
+			)
+		}
+	}
+
+	const renderCityDetail = () => {
+		if(cityClick) {
+			return (
+				<div>
+					<h2 id="city-name">{states[stateIndex].city[cityIndex].name}</h2>
+					<p id="city-description">{states[stateIndex].city[cityIndex].description}</p>
+				</div>
+			)
+		}
+	}
+
+	const renderLandMarkDetail = () => {
+		if(landmarkClick) {
+			return (
+				<div>
+					<h2 id="landmark-name">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].name}</h2>
+					<p id="landmark-description">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].description}</p>
+				</div>
+			)
+		}
 	}
 	return (
 	<div id="main">
@@ -163,10 +202,7 @@ function App()
 			))}
 		</select>
 
-		<div>
-			<h2 id="state-name">{states[stateIndex].name}</h2>
-			<p id="state-description">{states[stateIndex].description}</p>
-		</div>
+		{renderStateDetail()}
 
 		<select id="city" name="city" onChange={cityHandler}>
 			{states[stateIndex].city.map((item, index) => (
@@ -174,10 +210,7 @@ function App()
 			))}
 		</select>
 
-		<div>
-			<h2 id="city-name">{states[stateIndex].city[cityIndex].name}</h2>
-			<p id="city-description">{states[stateIndex].city[cityIndex].description}</p>
-		</div>
+		{renderCityDetail()}
 
 		<select id="landmark" name="landmark" onChange={landmarkHandler}>
 			{states[stateIndex].city[cityIndex].landmarks.map((item, index) => (
@@ -185,10 +218,8 @@ function App()
 			))}
 		</select>
 
-		<div>
-			<h2 id="landmark-name">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].name}</h2>
-			<p id="landmark-description">{states[stateIndex].city[cityIndex].landmarks[landmarkIndex].description}</p>
-		</div>
+		{renderLandMarkDetail()}
+
 	</div>
 	);
 }
