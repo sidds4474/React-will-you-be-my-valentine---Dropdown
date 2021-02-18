@@ -146,20 +146,31 @@ function App()
 	const [stateClick, setStateClick] = useState(false)
 	const [cityClick, setCityClick] = useState(false)
 	const [landmarkClick, setLandmarkClick] = useState(false)
+	const [applyClick, setAppleClick] = useState(false)
 	// Do not alter/remove main div
 	const stateHandler = (e) => {
-		setStateIndex(e.target.value)
-		setStateClick(true)
+		if(applyClick) {
+			console.log(e.target.value)
+			setStateIndex(e.target.value)
+			setStateClick(true)
+		}
+		setAppleClick(!applyClick)
 	}
 
 	const cityHandler = (e) => {
-		setCityIndex(e.target.value)
-		setCityClick(true)
+		if(applyClick) {
+			setCityIndex(e.target.value)
+			setCityClick(true)
+		}
+		setAppleClick(!applyClick)
 	}
 
 	const landmarkHandler = (e) => {
-		setlandMarkIndex(e.target.value)
-		setLandmarkClick(true)
+		if(applyClick) {
+			setlandMarkIndex(e.target.value)
+			setLandmarkClick(true)
+		}
+		setAppleClick(!applyClick)
 	}
 
 	const renderStateDetail = () => {
@@ -196,27 +207,27 @@ function App()
 	}
 	return (
 	<div id="main">
-		<select id="state" name="state" onChange={stateHandler}>
+		<select id="state" name="state" onClick={stateHandler}>
 			{states.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
-		</select>
+		</select><br />
 
 		{renderStateDetail()}
 
-		<select id="city" name="city" onChange={cityHandler}>
+		<select id="city" name="city" onClick={cityHandler}>
 			{states[stateIndex].city.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
-		</select>
+		</select><br />
 
 		{renderCityDetail()}
 
-		<select id="landmark" name="landmark" onChange={landmarkHandler}>
+		<select id="landmark" name="landmark" onClick={landmarkHandler}>
 			{states[stateIndex].city[cityIndex].landmarks.map((item, index) => (
 				<option key={index} value={index}>{item.name}</option>
 			))}
-		</select>
+		</select><br />
 
 		{renderLandMarkDetail()}
 
