@@ -1,6 +1,4 @@
 import React, { useState,useReducer } from "react";
-import "./../styles/App.css";
-
 
 const states = [{
 	name : "Madhya Pradesh",
